@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventingApp.AppHost", "EventingApp.AppHost\EventingApp.AppHost.csproj", "{D841D387-20BE-4770-93AF-E7383501E5F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventingApp.ServiceDefaults", "EventingApp.ServiceDefaults\EventingApp.ServiceDefaults.csproj", "{D2E0C107-17BC-4CC2-A2C7-9DD23BB10E6C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventingApp.ApiService", "EventingApp.ApiService\EventingApp.ApiService.csproj", "{652C37A1-60EA-4FD6-A802-D5292B0E5343}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventingApp.Web", "EventingApp.Web\EventingApp.Web.csproj", "{FA03EDCA-1205-4E4D-9FEF-E0C820387320}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D841D387-20BE-4770-93AF-E7383501E5F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D841D387-20BE-4770-93AF-E7383501E5F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D841D387-20BE-4770-93AF-E7383501E5F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D841D387-20BE-4770-93AF-E7383501E5F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2E0C107-17BC-4CC2-A2C7-9DD23BB10E6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2E0C107-17BC-4CC2-A2C7-9DD23BB10E6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2E0C107-17BC-4CC2-A2C7-9DD23BB10E6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2E0C107-17BC-4CC2-A2C7-9DD23BB10E6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{652C37A1-60EA-4FD6-A802-D5292B0E5343}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{652C37A1-60EA-4FD6-A802-D5292B0E5343}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{652C37A1-60EA-4FD6-A802-D5292B0E5343}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{652C37A1-60EA-4FD6-A802-D5292B0E5343}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA03EDCA-1205-4E4D-9FEF-E0C820387320}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA03EDCA-1205-4E4D-9FEF-E0C820387320}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA03EDCA-1205-4E4D-9FEF-E0C820387320}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA03EDCA-1205-4E4D-9FEF-E0C820387320}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
