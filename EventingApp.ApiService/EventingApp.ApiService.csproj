@@ -7,7 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\EventingApp.ServiceDefaults\EventingApp.ServiceDefaults.csproj"/>
+        <ProjectReference Include="..\EventingApp.ServiceDefaults\EventingApp.ServiceDefaults.csproj" />
     </ItemGroup>
 
     <ItemGroup>

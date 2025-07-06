@@ -6,9 +6,9 @@ public class CreateUserRequestDto
 {
     [Required] // data annotation for validation, called attribute in .NET
     [MaxLength(30)]
-    public string Name { get; set; }
+    public required string Name { get; set; }
     
     [Required]
     [EmailAddress]
-    public string Email { get; set; }
+    public required string Email { get; set; }
 }
