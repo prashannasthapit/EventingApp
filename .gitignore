@@ -69,3 +69,5 @@ nunit-*.xml
 /dataSources.local.xml
 
 .idea
+
+.DS_Store
