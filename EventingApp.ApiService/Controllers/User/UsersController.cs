@@ -5,7 +5,7 @@ namespace EventingApp.ApiService.Controllers.User;
 
 public class UsersController : ApiControllerBase
 {
-    private static readonly List<Entities.User> _users =
+    private static readonly List<Data.Entities.User> _users =
     [
         new() { Id = Guid.NewGuid(), Name = "Alice Johnson", Email = "alice@example.com" },
         new() { Id = Guid.NewGuid(), Name = "Bob Smith", Email = "bob@example.com" },
@@ -20,10 +20,10 @@ public class UsersController : ApiControllerBase
     ];
 
     [HttpGet]
-    public List<Entities.User> GetAll() => _users;
+    public List<Data.Entities.User> GetAll() => _users;
 
     [HttpGet("{id:guid}")] // api/users/{id}
-    public ActionResult<Entities.User> Get([FromRoute] Guid id)
+    public ActionResult<Data.Entities.User> Get([FromRoute] Guid id)
     {
         var user = _users.FirstOrDefault(x => x.Id == id);
         if (user == null)
@@ -35,7 +35,7 @@ public class UsersController : ApiControllerBase
     }
     
     [HttpPost]
-    public ActionResult<Entities.User> Create([FromBody] CreateUserRequestDto request)
+    public ActionResult<Data.Entities.User> Create([FromBody] CreateUserRequestDto request)
     {
         var user = new Entities.User
         {
