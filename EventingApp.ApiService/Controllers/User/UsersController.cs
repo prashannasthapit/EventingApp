@@ -37,7 +37,7 @@ public class UsersController : ApiControllerBase
     [HttpPost]
     public ActionResult<Data.Entities.User> Create([FromBody] CreateUserRequestDto request)
     {
-        var user = new Entities.User
+        var user = new Data.Entities.User
         {
             Id = Guid.NewGuid(),
             Name = request.Name,

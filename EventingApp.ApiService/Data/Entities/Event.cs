@@ -21,9 +21,10 @@ public class Event
     [MaxLength(256)]
     public string? Description { get; set; }
 
-    public required string Location { get; set; }
+    [MaxLength(256)]
+    public required string? Location { get; set; }
 
-    public Guid CreatedBy { get; set; }
+    public required Guid CreatedBy { get; set; }
 
     [ForeignKey(nameof(CreatedBy))]
     // UserId = ForeignKey

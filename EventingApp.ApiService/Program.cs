@@ -1,3 +1,5 @@
+using EventingApp.ApiService.Data;
+using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +11,8 @@ builder.AddServiceDefaults();
 builder.Services.AddProblemDetails();
 
 builder.Services.AddControllers();
+
+builder.AddNpgsqlDbContext<EventingDbContext>("eventing-db");
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 // specification, structure
@@ -28,6 +32,9 @@ app.UseExceptionHandler();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+
+    app.MapPost("/migrate-db", (EventingDbContext dbContext) => dbContext.Database.MigrateAsync());
+        
     app.MapScalarApiReference("/api-reference",
         options => { options.WithTheme(ScalarTheme.Mars); });
 }
