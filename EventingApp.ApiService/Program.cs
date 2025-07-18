@@ -1,4 +1,5 @@
 using EventingApp.ApiService.Data;
+using EventingApp.ApiService.Data.Seeders;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 
@@ -12,7 +13,15 @@ builder.Services.AddProblemDetails();
 
 builder.Services.AddControllers();
 
-builder.AddNpgsqlDbContext<EventingDbContext>("eventing-db");
+builder.AddNpgsqlDbContext<EventingDbContext>("eventing-db",
+    configureDbContextOptions: options =>
+    {
+        options.UseAsyncSeeding(async (context, _, cancellationToken) =>
+        {
+            await UsersSeeder.SeedAsync(context, cancellationToken);
+            await EventsSeeder.SeedAsync(context, cancellationToken);
+        });
+    });
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 // specification, structure
@@ -35,8 +44,10 @@ if (app.Environment.IsDevelopment())
 
     app.MapPost("/migrate-db", (EventingDbContext dbContext) => dbContext.Database.MigrateAsync());
         
-    app.MapScalarApiReference("/api-reference",
-        options => { options.WithTheme(ScalarTheme.Mars); });
+    // app.MapScalarApiReference("/api-reference",
+    //     options => { options.WithTheme(ScalarTheme.Mars); });
+
+    app.MapScalarApiReference();
 }
 
 app.MapControllers();

@@ -1,49 +1,75 @@
 using EventingApp.ApiService.Controllers.User.Dto;
+using EventingApp.ApiService.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace EventingApp.ApiService.Controllers.User;
 
-public class UsersController : ApiControllerBase
+public class UsersController(EventingDbContext dbContext) : ApiControllerBase
 {
-    private static readonly List<Data.Entities.User> _users =
-    [
-        new() { Id = Guid.NewGuid(), Name = "Alice Johnson", Email = "alice@example.com" },
-        new() { Id = Guid.NewGuid(), Name = "Bob Smith", Email = "bob@example.com" },
-        new() { Id = Guid.NewGuid(), Name = "Charlie Brown", Email = "charlie@example.com" },
-        new() { Id = Guid.NewGuid(), Name = "Diana Prince", Email = "diana@example.com" },
-        new() { Id = Guid.NewGuid(), Name = "Ethan Hunt", Email = "ethan@example.com" },
-        new() { Id = Guid.NewGuid(), Name = "Fiona Gallagher", Email = "fiona@example.com" },
-        new() { Id = Guid.NewGuid(), Name = "George Martin", Email = "george@example.com" },
-        new() { Id = Guid.NewGuid(), Name = "Hannah Baker", Email = "hannah@example.com" },
-        new() { Id = Guid.NewGuid(), Name = "Ivan Petrov", Email = "ivan@example.com" },
-        new() { Id = Guid.NewGuid(), Name = "Julia Roberts", Email = "julia@example.com" },
-    ];
-
     [HttpGet]
-    public List<Data.Entities.User> GetAll() => _users;
+    public async Task<List<UserResponse>> GetAll([FromQuery] string? search) =>
+        await dbContext.Users
+            .Where(x => search == null || 
+                        x.Name.ToLower().Contains(search.ToLower()))
+            .OrderBy(x => x.Name)
+            .Select(x => new UserResponse(x.Id, x.Name, x.Email, x.Address))
+            .ToListAsync();
 
-    [HttpGet("{id:guid}")] // api/users/{id}
-    public ActionResult<Data.Entities.User> Get([FromRoute] Guid id)
+    [HttpGet("{id:guid}")]
+    public async Task<ActionResult<UserResponse>> Get([FromRoute] Guid id)
     {
-        var user = _users.FirstOrDefault(x => x.Id == id);
+        var user = await dbContext.Users.FirstOrDefaultAsync(x => x.Id == id);
         if (user == null)
-        {
             return NotFound(new { message = "User not found" });
-        }
 
-        return user;
+        return Ok(new UserResponse(user.Id, user.Name, user.Email, user.Address));
     }
-    
+
     [HttpPost]
-    public ActionResult<Data.Entities.User> Create([FromBody] CreateUserRequestDto request)
+    public async Task<ActionResult<UserResponse>> Create([FromBody] CreateUserRequestDto request)
     {
         var user = new Data.Entities.User
         {
             Id = Guid.NewGuid(),
             Name = request.Name,
-            Email = request.Email
+            Email = request.Email,
+            Address = request.Address
         };
-        _users.Add(user);
-        return CreatedAtAction(nameof(Get), new { id = user.Id }, user);
+
+        dbContext.Users.Add(user);
+        await dbContext.SaveChangesAsync();
+
+        return CreatedAtAction(nameof(Get), new { id = user.Id },
+            new UserResponse(user.Id, user.Name, user.Email, user.Address));
+    }
+
+    [HttpPut("{id:guid}")]
+    public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateUserRequestDto request)
+    {
+        var user = await dbContext.Users.FirstOrDefaultAsync(x => x.Id == id);
+        if (user == null)
+            return NotFound(new { message = "User not found" });
+
+        user.Name = request.Name;
+        user.Email = request.Email;
+        user.Address = request.Address;
+
+        await dbContext.SaveChangesAsync();
+
+        return NoContent();
+    }
+
+    [HttpDelete("{id:guid}")]
+    public async Task<IActionResult> Delete([FromRoute] Guid id)
+    {
+        var user = await dbContext.Users.FirstOrDefaultAsync(x => x.Id == id);
+        if (user == null)
+            return NotFound(new { message = "User not found" });
+
+        dbContext.Users.Remove(user);
+        await dbContext.SaveChangesAsync();
+
+        return NoContent();
     }
 }
