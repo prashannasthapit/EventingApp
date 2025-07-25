@@ -10,8 +10,7 @@ public class UsersController(EventingDbContext dbContext) : ApiControllerBase
     [HttpGet]
     public async Task<List<UserResponse>> GetAll([FromQuery] string? search) =>
         await dbContext.Users
-            .Where(x => search == null || 
-                        x.Name.ToLower().Contains(search.ToLower()))
+            .Where(x => search == null || x.Name.ToLower().Contains(search.ToLower()))
             .OrderBy(x => x.Name)
             .Select(x => new UserResponse(x.Id, x.Name, x.Email, x.Address))
             .ToListAsync();

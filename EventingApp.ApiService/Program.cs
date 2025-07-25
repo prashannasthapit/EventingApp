@@ -1,5 +1,7 @@
 using EventingApp.ApiService.Data;
+using EventingApp.ApiService.Data.Entities;
 using EventingApp.ApiService.Data.Seeders;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 
@@ -22,6 +24,13 @@ builder.AddNpgsqlDbContext<EventingDbContext>("eventing-db",
             await EventsSeeder.SeedAsync(context, cancellationToken);
         });
     });
+
+builder.Services.AddIdentity<User, IdentityRole<Guid>>()
+    .AddEntityFrameworkStores<EventingDbContext>()
+    .AddDefaultTokenProviders()
+    .AddApiEndpoints();
+
+builder.Services.AddAuthentication().AddJwtBearer();
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 // specification, structure
@@ -49,6 +58,12 @@ if (app.Environment.IsDevelopment())
 
     app.MapScalarApiReference();
 }
+
+app.UseAuthentication();
+
+app.UseAuthorization();
+
+app.MapIdentityApi<User>()/*.WithGroupName("Account")*/;
 
 app.MapControllers();
 
