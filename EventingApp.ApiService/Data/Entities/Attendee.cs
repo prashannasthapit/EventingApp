@@ -7,27 +7,27 @@ namespace EventingApp.ApiService.Data.Entities;
 [Table("attendees")]
 public class Attendee
 {
-    public Guid Id { get; set; }
+    public Guid Id { get; init; }
 
-    public Guid UserId { get; set; }
+    public Guid UserId { get; init; }
 
-    public required User User { get; set; }
+    public required User User { get; init; }
 
-    public Guid EventId { get; set; }
+    public Guid EventId { get; init; }
 
-    public required Event Event { get; set; }
+    public required Event Event { get; init; }
 
-    public required RsvpResponse Response { get; set; } = RsvpResponse.Pending;
+    public required RsvpResponse Response { get; init; } = RsvpResponse.Pending;
 
-    public DateTime RespondedAt { get; set; }
+    public DateTime RespondedAt { get; init; }
 
-    public DateTime UpdatedAt { get; set; }
+    public DateTime UpdatedAt { get; init; }
 
-    public bool IsOrganiser { get; set; }
+    public bool IsOrganiser { get; init; }
 
     [MaxLength(500)]
-    public string? Comment { get; set; }
+    public string? Comment { get; init; }
 
-    public required string Priority { get; set; }
+    [MaxLength(100)] public required string Priority { get; set; }
 
 }
