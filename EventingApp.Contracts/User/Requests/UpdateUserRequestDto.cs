@@ -1,4 +1,4 @@
-namespace EventingApp.ApiService.Controllers.User.Dto;
+namespace EventingApp.Contracts.Requests;
 
 public record UpdateUserRequestDto(
     string Name,

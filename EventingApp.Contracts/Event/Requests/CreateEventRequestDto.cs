@@ -1,7 +1,6 @@
-using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace EventingApp.ApiService.Controllers.Event.Dto;
+namespace EventingApp.Contracts.Requests;
 
 public class CreateEventRequestDto
 {

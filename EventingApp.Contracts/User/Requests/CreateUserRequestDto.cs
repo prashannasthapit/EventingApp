@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace EventingApp.ApiService.Controllers.User.Dto;
+namespace EventingApp.Contracts.Requests;
 
 public class CreateUserRequestDto
 {

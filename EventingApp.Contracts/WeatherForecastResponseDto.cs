@@ -1,4 +1,4 @@
-namespace EventingApp.ApiService.Controllers.WeatherForecast.Dto;
+namespace EventingApp.Contracts.Responses;
 
 public record WeatherForecastResponseDto(DateOnly Date, int TemperatureC, string? Summary)
 {
