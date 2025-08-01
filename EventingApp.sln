@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventingApp.ApiService", "E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventingApp.Web", "EventingApp.Web\EventingApp.Web.csproj", "{FA03EDCA-1205-4E4D-9FEF-E0C820387320}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventingApp.Contracts", "EventingApp.Contracts\EventingApp.Contracts.csproj", "{7D60C7AF-A5ED-44AC-A373-F2E22C10EA53}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{FA03EDCA-1205-4E4D-9FEF-E0C820387320}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA03EDCA-1205-4E4D-9FEF-E0C820387320}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA03EDCA-1205-4E4D-9FEF-E0C820387320}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D60C7AF-A5ED-44AC-A373-F2E22C10EA53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D60C7AF-A5ED-44AC-A373-F2E22C10EA53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D60C7AF-A5ED-44AC-A373-F2E22C10EA53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D60C7AF-A5ED-44AC-A373-F2E22C10EA53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

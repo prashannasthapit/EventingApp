@@ -1,9 +1,10 @@
-using EventingApp.ApiService.Controllers.User.Dto;
 using EventingApp.ApiService.Data;
+using EventingApp.Contracts.Requests;
+using EventingApp.Contracts.Responses;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace EventingApp.ApiService.Controllers.User;
+namespace EventingApp.ApiService.Controllers;
 
 public class UsersController(EventingDbContext dbContext) : ApiControllerBase
 {

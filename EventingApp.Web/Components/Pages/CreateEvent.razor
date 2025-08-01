@@ -1,6 +1,45 @@
 @page "/CreateEvent"
-<h3>CreateEvent</h3>
+@using EventingApp.Contracts.Requests
+
+<h3>Create Event</h3>
+
+<EditForm Model="@createEventModel" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div>
+        <label for="eventName">Event Name:</label><br />
+        <InputText id="eventName" class="form-control" @bind-Value="createEventModel.EventName" />
+        <ValidationMessage For="@(() => createEventModel.EventName)" />
+    </div>
+
+    <div>
+        <label for="eventType">Event Type:</label><br />
+        <InputText id="eventType" class="form-control" @bind-Value="createEventModel.EventType" />
+        <ValidationMessage For="@(() => createEventModel.EventType)" />
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-2">Create Event</button>
+</EditForm>
+
+@if (submitted)
+{
+    <p class="text-success mt-2">Event submitted successfully!</p>
+}
 
 @code {
-    
+    private CreateEventRequestDto createEventModel = new()
+    {
+        EventName = null,
+        EventType = null
+    };
+    private bool submitted = false;
+
+    private void HandleValidSubmit()
+    {
+        // You could post `createEventModel` to an API here
+        Console.WriteLine($"Event Name: {createEventModel.EventName}");
+        Console.WriteLine($"Event Type: {createEventModel.EventType}");
+        submitted = true;
+    }
 }

@@ -1,7 +1,7 @@
-using EventingApp.ApiService.Controllers.WeatherForecast.Dto;
+using EventingApp.Contracts.Responses;
 using Microsoft.AspNetCore.Mvc;
 
-namespace EventingApp.ApiService.Controllers.WeatherForecast;
+namespace EventingApp.ApiService.Controllers;
 
 public class WeatherForecastController : ApiControllerBase
 {
